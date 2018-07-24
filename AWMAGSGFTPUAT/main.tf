@@ -8,7 +8,7 @@ resource "aws_vpc" "VPC1" {
   cidr_block = "10.0.0.0/23"
 
   tags {
-    Name = "AWMAGSGFTPUAT"
+    Name = "AWMAGRGVPC1"
   }
 }
 
@@ -17,6 +17,6 @@ resource "aws_subnet" "SNET11" {
   cidr_block = "10.0.0.0/24"
 
   tags {
-    Name = "AWMAGSGFTPUAT"
+    Name = "AWMAGRGVPC1"
   }
 }
