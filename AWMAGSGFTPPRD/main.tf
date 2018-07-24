@@ -21,3 +21,14 @@ resource "aws_subnet" "SNET12" {
     Resource_Group = "AWMAGRGVPC1"
   }
 }
+
+resource "aws_network_interface" "AZMAGNIC12" {
+  subnet_id = "${aws_subnet.SNET12.id}"
+  private_ips = ["10.0.1.4"]
+  security_groups = ["${data.terraform_remote_state.localstate.security_group_name}"]
+
+  tags {
+    Name = "AZMAGNIC12"
+    Resource_Group = "AWMAGRGFTPPRD"
+  }
+}
