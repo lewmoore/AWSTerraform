@@ -27,7 +27,7 @@ resource "aws_internet_gateway" "FTPUATIGW" {
   vpc_id = "${aws_vpc.VPC1.id}"
 
   tags {
-    Resource_Group = "AWMAGSGFTPUAT"
+    Resource_Group = "AWMAGRGFTPUAT"
   }
 }
 
@@ -37,7 +37,7 @@ resource "aws_network_interface" "AWMAGNIC11" {
   security_groups = ["${aws_security_group.FTPUATSG.id}"]
 
   tags {
-    Resource_Group = "AWMAGSGFTPUAT"
+    Resource_Group = "AWMAGRGFTPUAT"
   }
 }
 
@@ -47,7 +47,7 @@ resource "aws_eip" "FTPUATEIP" {
   network_interface = "${aws_network_interface.AWMAGNIC11.id}"
 
   tags {
-    Resource_Group = "AWMAGSGFTPUAT"
+    Resource_Group = "AWMAGRGFTPUAT"
   }
 }
 
@@ -76,6 +76,6 @@ resource "aws_instance" "FTPUATVM" {
     }
 
   tags {
-    Resource_Group = "AWMAGSGFTPUAT"
+    Resource_Group = "AWMAGRGFTPUAT"
   }
 }
