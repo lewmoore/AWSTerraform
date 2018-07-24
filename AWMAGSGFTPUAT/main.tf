@@ -45,6 +45,21 @@ resource "aws_network_interface" "AWMAGNIC11" {
   }
 }
 
+resource "aws_route_table" "ftpuatrt" {
+  vpc_id = "${aws_vpc.VPC1.id}"
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = "${aws_internet_gateway.FTPUATIGW.id}"
+  }
+}
+
+resource "aws_route_table_association" "main" {
+    subnet_id = "${aws_subnet.SNET11.id}"
+    route_table_id = "${aws_route_table.ftpuatrt.id}"
+}
+
+
 resource "aws_eip" "FTPUATEIP" {
   instance = "${aws_instance.FTPUATVM.id}"
   vpc      = true
