@@ -35,12 +35,20 @@ resource "aws_network_interface" "AWMAGNIC11" {
   subnet_id = "${aws_subnet.SNET11.id}"
   private_ips = ["10.0.0.4"]
   security_groups = ["${aws_security_group.FTPUATSG.id}"]
+
+  tags {
+    Resource_Group = "AWMAGSGFTPUAT"
+  }
 }
 
 resource "aws_eip" "FTPUATEIP" {
   instance = "${aws_instance.FTPUATVM.id}"
   vpc      = true
   network_interface = "${aws_network_interface.AWMAGNIC11.id}"
+
+  tags {
+    Resource_Group = "AWMAGSGFTPUAT"
+  }
 }
 
 data "aws_ami" "amazon_windows_2016" {
