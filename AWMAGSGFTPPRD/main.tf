@@ -82,6 +82,7 @@ resource "aws_instance" "FTPPRDVM" {
     }
 
   tags {
+    Name = "AWSMAGVMFTPPRD"
     Resource_Group = "AWMAGRGFTPPRD"
   }
 }

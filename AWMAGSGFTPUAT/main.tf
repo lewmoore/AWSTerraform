@@ -95,6 +95,7 @@ resource "aws_instance" "FTPUATVM" {
     }
 
   tags {
+    Name = "AWSMAGVMFTPUAT"
     Resource_Group = "AWMAGRGFTPUAT"
   }
 }
