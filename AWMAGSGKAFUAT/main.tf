@@ -12,3 +12,13 @@ resource "aws_vpc" "vpc2" {
     Resource_Group = "AWMAGRGVPC2"
   }
 }
+
+resource "aws_subnet" "snet21" {
+  vpc_id = "${aws_vpc.vpc2.id}"
+  cidr_block = "172.168.0.0/16"
+
+  tags {
+    Name = "AWSMAGSNET21"
+    Resource_Group = "AWSMAGRGVPC2"
+  }
+}
