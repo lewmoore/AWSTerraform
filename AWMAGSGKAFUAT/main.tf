@@ -18,7 +18,7 @@ resource "aws_subnet" "snet21" {
   cidr_block = "172.168.0.0/16"
 
   tags {
-    Name = "AWSMAGSNET21"
-    Resource_Group = "AWSMAGRGVPC2"
+    Name = "AWMAGSNET21"
+    Resource_Group = "AWMAGRGVPC2"
   }
 }
