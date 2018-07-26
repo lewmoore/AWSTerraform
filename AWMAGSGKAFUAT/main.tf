@@ -28,3 +28,29 @@ resource "aws_network_interface" "AWMAGNIC21" {
   private_ips = ["172.168.0.4"]
   security_groups = ["${aws_security_group.kafuatsg.id}"]
 }
+
+data "aws_ami" "ubuntu" {
+  most_recent = true
+
+  filter {
+  name   = "name"
+  values = ["ubuntu/images/hvm-ssd/ubuntu-trusty-14.04-amd64-server-*"]
+}
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  owners = ["099720109477"] # Canonical
+}
+
+resource "aws_instance" "kafuatvm" {
+  ami = "${data.aws_ami.ubuntu.id}"
+  instance_type = "t2.micro"
+
+  network_interface {
+    network_interface_id = "${aws_network_interface.AWMAGNIC21.id}"
+    device_index = 0
+    }
+}
