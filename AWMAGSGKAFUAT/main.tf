@@ -48,6 +48,7 @@ data "aws_ami" "ubuntu" {
 resource "aws_instance" "kafuatvm" {
   ami = "${data.aws_ami.ubuntu.id}"
   instance_type = "t2.micro"
+  key_name = "deployer"
 
   network_interface {
     network_interface_id = "${aws_network_interface.AWMAGNIC21.id}"
