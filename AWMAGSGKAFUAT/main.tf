@@ -22,3 +22,9 @@ resource "aws_subnet" "snet21" {
     Resource_Group = "AWMAGRGVPC2"
   }
 }
+
+resource "aws_network_interface" "AWMAGNIC21" {
+  subnet_id = "${aws_subnet.snet21.id}"
+  private_ips = ["172.168.0.4"]
+  security_groups = ["${aws_security_group.kafuatsg.id}"]
+}
