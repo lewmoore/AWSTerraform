@@ -55,3 +55,13 @@ resource "aws_instance" "kafuatvm" {
     device_index = 0
     }
 }
+
+resource "aws_eip" "KAFUATEIP" {
+  instance = "${aws_instance.kafuatvm.id}"
+  vpc      = true
+  network_interface = "${aws_network_interface.AWMAGNIC21.id}"
+}
+
+resource "aws_internet_gateway" "KAFUATIGW" {
+  vpc_id = "${aws_vpc.vpc2.id}"
+}
