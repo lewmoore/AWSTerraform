@@ -65,3 +65,17 @@ resource "aws_eip" "KAFUATEIP" {
 resource "aws_internet_gateway" "KAFUATIGW" {
   vpc_id = "${aws_vpc.vpc2.id}"
 }
+
+resource "aws_route_table" "kafuatrt" {
+  vpc_id = "${aws_vpc.vpc2.id}"
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = "${aws_internet_gateway.KAFUATIGW.id}"
+  }
+}
+
+resource "aws_route_table_association" "main" {
+    subnet_id = "${aws_subnet.snet21.id}"
+    route_table_id = "${aws_route_table.kafuatrt.id}"
+}
