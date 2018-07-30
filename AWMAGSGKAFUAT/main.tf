@@ -48,12 +48,17 @@ data "aws_ami" "ubuntu" {
 resource "aws_instance" "kafuatvm" {
   ami = "${data.aws_ami.ubuntu.id}"
   instance_type = "t2.micro"
-  key_name = "kafuatkey"
+  key_name = "terraform_ec2_key"
 
   network_interface {
     network_interface_id = "${aws_network_interface.AWMAGNIC21.id}"
     device_index = 0
     }
+}
+
+resource "aws_key_pair" "terraform_ec2_key" {
+  key_name = "terraform_ec2_key"
+  public_key = "${file("terraform_ec2_key.pub")}"
 }
 
 resource "aws_eip" "KAFUATEIP" {
